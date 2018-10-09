@@ -1,2 +1,2 @@
 # ARN-Backend
-Backend for the project AnimalRightsNetwork built in Node.js
+Backend for the project AnimalRescueNetwork built in Node.js
