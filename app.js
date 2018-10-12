@@ -1,4 +1,5 @@
 var express = require("express");
+var bodyParser = require('body-parser');
 var errorHandler = require('./middlewares/error-handler');
 var app = express();
 
@@ -6,6 +7,9 @@ var app = express();
 var authenticationRoutes = require('./routes/authentication-routes');
 
 // Middlewares, routing & error handling
+var jsonParser = bodyParser.json();
+
+app.use(jsonParser);
 app.use('/authentication', authenticationRoutes);
 app.use(errorHandler);
 
