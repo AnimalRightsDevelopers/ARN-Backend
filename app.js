@@ -4,7 +4,7 @@ var errorHandler = require('./middlewares/error-handler');
 var app = express();
 
 // Get routes
-var authenticationRoutes = require('./routes/authentication-routes');
+var authenticationRoutes = require('./authentication/authentication-routes');
 
 // Middlewares, routing & error handling
 var jsonParser = bodyParser.json();
