@@ -22,11 +22,15 @@ router.post('/register', function(req, res, next) {
     else if (!validator.IsValidPasswordRepeat(credentials.password, credentials.repeat)) {
         throw new errors.BadRequestError("Repeated password must match password");
     }
+    else if (userRepository.IsEmailUsed(credentials.email)) {
+        res.status(201).send();
+        return;
+    }
 
     var data = userFactory.CreateUserDataFromRegistrationCredentials(credentials);
     userRepository.AddUser(data);
 
-    res.status(201).send(userFactory.CreateUserViewFromUserData(data));
+    res.status(201).send();
 });
 
 module.exports = router;
