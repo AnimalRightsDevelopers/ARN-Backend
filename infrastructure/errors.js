@@ -46,3 +46,11 @@ class InternalServerError extends BaseError {
     }
 }
 module.exports.InternalServerError = InternalServerError;
+
+// 501 Not Implemented Error
+class NotImplementedError extends BaseError {
+    constructor(message) {
+        super(501, message);
+    }
+}
+module.exports.NotImplementedError = NotImplementedError;
