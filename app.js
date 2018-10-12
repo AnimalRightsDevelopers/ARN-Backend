@@ -1,13 +1,16 @@
 var express = require("express");
+var bodyParser = require('body-parser');
 var errorHandler = require('./middlewares/error-handler');
 var app = express();
 
-app.get("/home", function (req, res) {
-    res.send("There is no place like home");
-});
-app.get("/about", function (req, res) {
-    res.send("I like fruits");
-});
+// Get routes
+var authenticationRoutes = require('./authentication/authentication-routes');
+
+// Middlewares, routing & error handling
+var jsonParser = bodyParser.json();
+
+app.use(jsonParser);
+app.use('/authentication', authenticationRoutes);
 app.use(errorHandler);
 
 app.listen(3000);
