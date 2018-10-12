@@ -4,6 +4,8 @@ var router = express.Router();
 
 var models = require('./authentication-models');
 var validator = require('./authentication-validator');
+var userFactory = require('../user/user-factory');
+var userRepository = require('../user/user-repository');
 
 router.post('/register', function(req, res, next) {
     var credentials = Object.assign(new models.RegistrationCredentials, req.body);
@@ -21,7 +23,10 @@ router.post('/register', function(req, res, next) {
         throw new errors.BadRequestError("Repeated password must match password");
     }
 
-    throw new errors.NotImplementedError("The registration functionality has not yet been implemented");
+    var data = userFactory.CreateUserDataFromRegistrationCredentials(credentials);
+    userRepository.AddUser(data);
+
+    res.status(201).send(userFactory.CreateUserViewFromUserData(data));
 });
 
 module.exports = router;
