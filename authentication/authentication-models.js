@@ -15,3 +15,18 @@ class RegistrationCredentials {
 }
 
 module.exports.RegistrationCredentials = RegistrationCredentials;
+
+class LoginCredentials {
+    /**
+     * Create a LoginCredentials type
+     * @param {string} email Email of the user - must be unique
+     * @param {string} password Password of the user
+     */
+    constructor(email, password) {
+        this.email = email;
+        this.password = password;
+
+    }
+}
+
+module.exports.LoginCredentials = LoginCredentials;
