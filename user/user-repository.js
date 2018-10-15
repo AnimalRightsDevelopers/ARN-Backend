@@ -26,6 +26,15 @@ class UserRepository {
 
         return user;
     }
+
+    GenerateToken(user) {
+        user.token = uuid();
+        var expiration = new Date();
+        expiration.setSeconds(expiration.getSeconds() + 3600);
+        user.tokenExpiration = expiration;
+
+        return user.token;
+    }
 }
 
 module.exports = new UserRepository();

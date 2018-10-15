@@ -41,6 +41,10 @@ router.post('/login', function (req, res, next) {
     if (!user || user.password !== credentials.password) {
         throw new errors.UnauthorizedError("Invalid email and/or password");
     }
+
+    var token = userRepository.GenerateToken(user);
+    
+    res.send(token);
 });
 
 module.exports = router;
