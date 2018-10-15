@@ -1,4 +1,4 @@
-var uuid = require('uuid/v5');
+var uuid = require('uuid/v4');
 
 class UserRepository {
     constructor() {
@@ -14,11 +14,26 @@ class UserRepository {
     }
 
     IsEmailUsed(email) {
-        var user = this.users.find((element, index, array) => {
+        var user = this.GetUserByEmail(email);
+
+        return Boolean(user);
+    }
+
+    GetUserByEmail(email) {
+        var user = this.users.find((element) => {
             return element.email === email;
         });
 
-        return Boolean(user);
+        return user;
+    }
+
+    GenerateToken(user) {
+        user.token = uuid();
+        var expiration = new Date();
+        expiration.setSeconds(expiration.getSeconds() + 3600);
+        user.tokenExpiration = expiration;
+
+        return user.token;
     }
 }
 
