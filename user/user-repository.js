@@ -1,4 +1,4 @@
-var uuid = require('uuid/v5');
+var uuid = require('uuid/v4');
 
 class UserRepository {
     constructor() {
