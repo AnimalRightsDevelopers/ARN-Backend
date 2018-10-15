@@ -38,10 +38,9 @@ router.post('/login', function (req, res, next) {
 
     var user = userRepository.GetUserByEmail(credentials.email);
 
-    if (!user){
+    if (!user || user.password !== credentials.password) {
         throw new errors.UnauthorizedError("Invalid email and/or password");
     }
-
 });
 
 module.exports = router;
