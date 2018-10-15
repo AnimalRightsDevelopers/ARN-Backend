@@ -33,4 +33,15 @@ router.post('/register', function(req, res, next) {
     res.status(201).send();
 });
 
+router.post('/login', function (req, res, next) {
+    var credentials = Object.assign(new models.LoginCredentials, req.body);
+
+    var user = userRepository.GetUserByEmail(credentials.email);
+
+    if (!user){
+        throw new errors.UnauthorizedError("Invalid email and/or password");
+    }
+
+});
+
 module.exports = router;

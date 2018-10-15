@@ -14,11 +14,17 @@ class UserRepository {
     }
 
     IsEmailUsed(email) {
-        var user = this.users.find((element, index, array) => {
+        var user = this.GetUserByEmail(email);
+
+        return Boolean(user);
+    }
+
+    GetUserByEmail(email) {
+        var user = this.users.find((element) => {
             return element.email === email;
         });
 
-        return Boolean(user);
+        return user;
     }
 }
 
